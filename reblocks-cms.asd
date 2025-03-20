@@ -16,3 +16,7 @@
                "reblocks-cms/models/content"
                "reblocks-cms/models/content-tag")
   :in-order-to ((test-op (test-op "reblocks-cms-tests"))))
+
+
+(asdf:register-system-packages "mito-migration"
+                               '(#:mito.migration))
