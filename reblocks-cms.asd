@@ -11,5 +11,8 @@
   :class :40ants-asdf-system
   :defsystem-depends-on ("40ants-asdf-system")
   :pathname "src"
-  :depends-on ("reblocks-cms/core")
+  :depends-on ("reblocks-cms/models/tag"
+               "reblocks-cms/models/author"
+               "reblocks-cms/models/content"
+               "reblocks-cms/models/content-tag")
   :in-order-to ((test-op (test-op "reblocks-cms-tests"))))
