@@ -17,6 +17,7 @@ CREATE TABLE "content" (
     "title" TEXT NOT NULL,
     "text" TEXT NOT NULL,
     "type" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "author_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP,
     "updated_at" TIMESTAMP

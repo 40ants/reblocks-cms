@@ -5,7 +5,13 @@
   (:import-from #:reblocks-cms/models/tag
                 #:tag)
   (:import-from #:reblocks-cms/models/content
-                #:content))
+                #:content)
+  (:export
+   #:content-tag
+   #:content-tag-tag
+   #:content-tag-tag-id
+   #:content-tag-content
+   #:content-tag-content-id))
 (in-package #:reblocks-cms/models/tag)
 
 

@@ -5,7 +5,13 @@
   (:import-from #:alexandria
                 #:make-keyword)
   (:import-from #:reblocks-cms/models/author
-                #:author))
+                #:author)
+  (:export #:content
+           #:content-title
+           #:content-text
+           #:content-type
+           #:content-author
+           #:content-author-id))
 (in-package #:reblocks-cms/models/content)
 
 
@@ -21,10 +27,20 @@
    (type :initarg :type
          :type symbol
          :col-type :text
-         :inflate #'symbol-name
-         :deflate #'make-keyword
+         :deflate #'symbol-name
+         :inflate (lambda (value)
+                    (make-keyword (string-upcase value)))
          :accessor content-type)
+   (slug :initarg :slug
+         :type string
+         :col-type :text
+         :accessor content-slug)
    (author :initarg :author
            :type author
            :col-type author
            :accessor content-author)))
+
+(defmethod print-object ((obj content) stream)
+  (print-unreadable-object (obj stream :type t)
+    (format stream "~S"
+            (content-title obj))))
