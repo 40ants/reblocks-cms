@@ -1,7 +1,9 @@
 (uiop:define-package #:reblocks-cms/models/tag
   (:use #:cl)
   (:import-from #:mito
-                #:deftable))
+                #:deftable)
+  (:export #:tag
+           #:tag-name))
 (in-package #:reblocks-cms/models/tag)
 
 

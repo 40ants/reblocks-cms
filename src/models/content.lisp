@@ -11,7 +11,8 @@
            #:content-text
            #:content-type
            #:content-author
-           #:content-author-id))
+           #:content-author-id
+           #:content-slug))
 (in-package #:reblocks-cms/models/content)
 
 

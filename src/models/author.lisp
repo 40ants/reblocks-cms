@@ -1,7 +1,9 @@
 (uiop:define-package #:reblocks-cms/models/author
   (:use #:cl)
   (:import-from #:mito
-                #:deftable))
+                #:deftable)
+  (:export #:author
+           #:author-name))
 (in-package #:reblocks-cms/models/author)
 
 
