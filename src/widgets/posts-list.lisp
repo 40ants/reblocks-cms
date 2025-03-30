@@ -25,6 +25,10 @@
                 #:object-updated-at)
   (:import-from #:reblocks-cms/models/tag
                 #:tag-name)
+  (:import-from #:reblocks-cms/widgets/vars
+                #:*tag-classes*)
+  (:import-from #:reblocks-cms/widgets/utils
+                #:render-tags)
   (:export #:make-tagged-posts-list
            #:posts-list
            #:tagged-posts-list
@@ -37,11 +41,7 @@
 
 
 (defwidget tagged-posts-list (posts-list)
-  (
-   ;; (tag-name :initarg :tag-name
-   ;;           :type string
-   ;;           :reader tag-name)
-   (uri-prefix :initarg :uri-prefix
+  ((uri-prefix :initarg :uri-prefix
                :type string
                :reader uri-prefix)))
 
@@ -100,7 +100,8 @@
 (defmethod reblocks-ui2/widget:render ((widget posts-list) (theme t))
   (let ((posts (get-posts-list widget)))
     (with-html
-      (:h1 (get-title widget))
+      (:h1 :class "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center"
+           (get-title widget))
       (:div :class "flex flex-col gap-8"
             (loop for post in posts
                   do (reblocks-ui2/widget:render post theme))))))
@@ -131,12 +132,7 @@
                         (:div :class "flex flex-wrap gap-2 mb-2"
                               (:span :class "text-sm text-gray-500"
                                      "Теги: ")
-                              (loop for tag in tags
-                                    do (:a :class "inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700"
-                                           :href (fmt "/posts-by-tag/~A"
-                                                      (quri:url-encode (tag-name tag)))
-                                           (fmt "#~A"
-                                                (tag-name tag))))))
+                              (render-tags tags)))
                       (:time :class "text-sm text-gray-500"
                              (fmt "Опубликовано: ~A"
                                   (local-time:format-timestring nil updated-at

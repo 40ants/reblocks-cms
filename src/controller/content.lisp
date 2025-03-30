@@ -7,13 +7,13 @@
                 #:content-title)
   (:import-from #:reblocks-cms/controller/content-tag
                 #:bind-content-to-tag)
-  (:export #:find-content-by-slug
+  (:export #:get-content-by-slug
            #:update-content
            #:create-content))
 (in-package #:reblocks-cms/controller/content)
 
 
-(defun find-content-by-slug (slug)
+(defun get-content-by-slug (slug)
   (mito:find-dao 'content
                  :slug slug))
 
