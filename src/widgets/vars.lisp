@@ -2,8 +2,13 @@
   (:use #:cl)
   (:export #:*tag-classes*
            #:*highlight-js-path*
-           #:*highlight-js-theme-path*))
+           #:*highlight-js-theme-path*
+           #:*h1-classes*))
 (in-package #:reblocks-cms/widgets/vars)
+
+
+(defvar *h1-classes*
+  "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center")
 
 
 (defvar *tag-classes*

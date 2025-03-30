@@ -26,6 +26,7 @@
   (:import-from #:reblocks-cms/models/tag
                 #:tag-name)
   (:import-from #:reblocks-cms/widgets/vars
+                #:*h1-classes*
                 #:*tag-classes*)
   (:import-from #:reblocks-cms/widgets/utils
                 #:render-tags)
@@ -96,15 +97,25 @@
            current-tag-name))))
 
 
+(defgeneric render-no-content (widget theme)
+  (:method ((widget posts-list) (theme t))
+    (with-html
+      (:div :class "text-center"
+            "В этом разделе пока нет ни одной страницы."))))
+
 
 (defmethod reblocks-ui2/widget:render ((widget posts-list) (theme t))
   (let ((posts (get-posts-list widget)))
     (with-html
-      (:h1 :class "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center"
+      (:h1 :class *h1-classes*
            (get-title widget))
-      (:div :class "flex flex-col gap-8"
-            (loop for post in posts
-                  do (reblocks-ui2/widget:render post theme))))))
+      (cond
+        (posts
+         (:div :class "grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+               (loop for post in posts
+                     do (reblocks-ui2/widget:render post theme))))
+        (t
+         (render-no-content widget theme))))))
 
 
 (defmethod reblocks-ui2/widget:render ((widget posts-list-item) (theme t))

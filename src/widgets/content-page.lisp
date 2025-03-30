@@ -42,6 +42,8 @@
                 #:awhen)
   (:import-from #:alexandria
                 #:flatten)
+  (:import-from #:reblocks-cms/utils/markup
+                #:markdown-to-html)
   (:export #:content-page
            #:make-content-page))
 (in-package #:reblocks-cms/widgets/content-page)
@@ -78,10 +80,7 @@
 
 
 (defun content-to-html (content)
-  (let ((3bmd-code-blocks:*code-blocks* t))
-    (3bmd:parse-string-and-print-to-stream
-     (content-text content)
-     reblocks/html:*stream*)))
+  (markdown-to-html (content-text content)))
 
 
 (defmethod reblocks-ui2/widget:render ((widget content-page) (theme t))
@@ -94,8 +93,7 @@
          (tags (get-content-tags content)))
     (with-html
       (:article :class "bg-white overflow-hidden p-4 w-full flex flex-col gap-4"
-                ;; :class "bg-white rounded-lg border-1 border-slate-200 shadow-lg overflow-hidden p-4 w-full flex flex-col gap-4"
-                (:h1 :class "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center"
+                (:h1 :class reblocks-cms/widgets/vars:*h1-classes*
                      title)
                 
                 (:div :class "flex flex-col gap-1"
