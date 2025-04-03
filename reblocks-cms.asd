@@ -11,7 +11,8 @@
   :class :40ants-asdf-system
   :defsystem-depends-on ("40ants-asdf-system")
   :pathname "src"
-  :depends-on ("reblocks-ui2-tailwind"
+  :depends-on ("reblocks-ui2"
+               "reblocks-ui2-tailwind"
                "reblocks-cms/models/tag"
                "reblocks-cms/models/author"
                "reblocks-cms/models/content"
