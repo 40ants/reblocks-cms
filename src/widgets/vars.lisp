@@ -8,11 +8,13 @@
 
 
 (defvar *h1-classes*
-  "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center")
+  "text-4xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight tracking-wide text-center"
+  "Redefine this variable to change style of the main header on your site.")
 
 
 (defvar *tag-classes*
-  "inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700")
+  "inline-block bg-gray-200 rounded-full px-2 text-sm font-semibold text-gray-700"
+  "Redefine this variable to change appearence of the tag labels of the content.")
 
 
 (defvar *highlight-js-path* nil

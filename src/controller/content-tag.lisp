@@ -25,7 +25,8 @@
                      :tag tag)
       (mito:create-dao 'content-tag
                        :content content
-                       :tag tag)))
+                       :tag tag))
+  (values))
 
 
 

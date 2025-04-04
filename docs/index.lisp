@@ -40,6 +40,8 @@
 
 (defsection @index (:title "reblocks-cms - Content management system for sites built on Reblocks web framework"
                     :ignore-words ("JSON"
+                                   "JS"
+                                   "HTML"
                                    "HTTP"
                                    "TODO"
                                    "Unlicense"
@@ -54,9 +56,7 @@
                                    "GIT"))
   (reblocks-cms system)
   "
-[![](https://github-actions.40ants.com/40ants/reblocks-cms
-/matrix.svg?only=ci.run-tests)](https://github.com/40ants/reblocks-cms
-/actions)
+[![](https://github-actions.40ants.com/40ants/reblocks-cms/matrix.svg?only=ci.run-tests)](https://github.com/40ants/reblocks-cms/actions)
 
 ![Quicklisp](http://quickdocs.org/badge/reblocks-cms.svg)
 "

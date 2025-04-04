@@ -48,7 +48,8 @@
   (:import-from #:reblocks-cms/utils/markup
                 #:markdown-to-html)
   (:export #:content-page
-           #:make-content-page))
+           #:make-content-page
+           #:uri-prefix))
 (in-package #:reblocks-cms/widgets/content-page)
 
 

@@ -9,15 +9,13 @@
   (:import-from #:serapeum
                 #:soft-list-of
                 #:->)
-  (:export
-   #:content-tag
-   #:content-tag-tag
-   #:content-tag-tag-id
-   #:content-tag-content
-   #:content-tag-content-id
-   #:get-content-by-tag
-   #:tag-name
-   #:tag))
+  (:export #:content-tag
+           #:content-tag-tag
+           #:content-tag-tag-id
+           #:content-tag-content
+           #:content-tag-content-id
+           #:get-content-by-tag
+           #:tag))
 (in-package #:reblocks-cms/models/content-tag)
 
 

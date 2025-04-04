@@ -33,7 +33,10 @@
   (:export #:make-tagged-posts-list
            #:posts-list
            #:tagged-posts-list
-           #:tag-name))
+           #:tag-name
+           #:uri-prefix
+           #:posts-list-item
+           #:item-content))
 (in-package #:reblocks-cms/widgets/posts-list)
 
 
