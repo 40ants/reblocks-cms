@@ -22,3 +22,5 @@
 
 (asdf:register-system-packages "mito-migration"
                                '(#:mito.migration))
+(asdf:register-system-packages "3bmd"
+                               '(#:3bmd-code-blocks))
