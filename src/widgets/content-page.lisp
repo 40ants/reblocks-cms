@@ -11,6 +11,9 @@
                 #:->
                 #:fmt)
   (:import-from #:reblocks-lass)
+  (:import-from #:reblocks-parenscript)
+  (:import-from #:parenscript
+                #:chain)
   (:import-from #:reblocks/dependencies)
   (:import-from #:reblocks-cms/models/content-tag
                 #:get-content-by-tag)
@@ -122,11 +125,11 @@
                (reblocks/dependencies:make-dependency it)
                ;; Start the syntax highlighting
                (reblocks-parenscript:make-dependency
-                 (ps:chain window
+                 (chain window
                            (add-event-listener
                             "load"
                             (lambda (event)
-                              (ps:chain hljs (highlight-all))))))))
+                              (chain hljs (highlight-all))))))))
             
             (awhen *highlight-js-theme-path*
               (reblocks/dependencies:make-dependency it))

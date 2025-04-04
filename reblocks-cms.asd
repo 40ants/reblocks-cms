@@ -16,11 +16,13 @@
                "reblocks-cms/models/tag"
                "reblocks-cms/models/author"
                "reblocks-cms/models/content"
-               "reblocks-cms/models/content-tag")
+               "reblocks-cms/models/content-tag"
+               "reblocks-cms/widgets/content-page"
+               "reblocks-cms/widgets/posts-list")
   :in-order-to ((test-op (test-op "reblocks-cms-tests"))))
 
 
 (asdf:register-system-packages "mito-migration"
                                '(#:mito.migration))
-(asdf:register-system-packages "3bmd"
+(asdf:register-system-packages "3bmd-ext-code-blocks"
                                '(#:3bmd-code-blocks))
