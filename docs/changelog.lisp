@@ -9,5 +9,7 @@
                               "ASDF"
                               "REPL"
                               "HTTP"))
+  (0.2.0 2025-05-25
+         "* Code updated for new Reblocks version.")
   (0.1.0 2023-02-05
          "* Initial version."))

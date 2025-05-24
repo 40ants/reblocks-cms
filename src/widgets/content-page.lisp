@@ -95,7 +95,7 @@
          (content-author (content-author content))
          (author-name (author-name content-author))
          (tags (get-content-tags content)))
-    (with-html
+    (with-html ()
       (:article :class "bg-white overflow-hidden p-4 w-full flex flex-col gap-4"
                 (:h1 :class reblocks-cms/widgets/vars:*h1-classes*
                      title)

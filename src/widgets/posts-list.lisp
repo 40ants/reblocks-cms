@@ -102,14 +102,14 @@
 
 (defgeneric render-no-content (widget theme)
   (:method ((widget posts-list) (theme t))
-    (with-html
+    (with-html ()
       (:div :class "text-center"
             "В этом разделе пока нет ни одной страницы."))))
 
 
 (defmethod reblocks-ui2/widget:render ((widget posts-list) (theme t))
   (let ((posts (get-posts-list widget)))
-    (with-html
+    (with-html ()
       (:h1 :class *h1-classes*
            (get-title widget))
       (cond
@@ -132,7 +132,7 @@
                             slug))
          (tags (get-content-tags content)))
     
-    (with-html
+    (with-html ()
       (:article :class "bg-white rounded-lg border-1 border-slate-200 shadow-lg overflow-hidden p-4 w-full"
                 (:div :class "p-6"
                       (:h2 :class "text-xl font-semibold mb-1"

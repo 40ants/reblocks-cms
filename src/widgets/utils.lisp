@@ -19,7 +19,7 @@
     (values &optional))
 
 (defun render-tags (tags)
-  (with-html
+  (with-html ()
     (loop for tag in tags
           do (:a :class *tag-classes*
                  :href (fmt "/posts-by-tag/~A"
