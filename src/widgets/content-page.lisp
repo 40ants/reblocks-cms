@@ -20,8 +20,7 @@
   (:import-from #:reblocks-cms/models/content
                 #:content-title
                 #:content-author
-                #:content-text
-                #:content-slug)
+                #:content-text)
   (:import-from #:reblocks-cms/models/content
                 #:content)
   (:import-from #:reblocks-cms/controller/content

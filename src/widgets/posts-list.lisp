@@ -23,8 +23,6 @@
                 #:author-name)
   (:import-from #:mito
                 #:object-updated-at)
-  (:import-from #:reblocks-cms/models/tag
-                #:tag-name)
   (:import-from #:reblocks-cms/widgets/vars
                 #:*h1-classes*
                 #:*tag-classes*)
@@ -48,9 +46,7 @@
 (defwidget tagged-posts-list (posts-list)
   ((tag :initarg :tag
         :type string
-        :reader tag-name
-        ;; :reader uri-prefix
-        )))
+        :reader tag-name)))
 
 
 (defwidget posts-list-item ()
