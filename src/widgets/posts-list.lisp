@@ -34,7 +34,6 @@
            #:posts-list
            #:tagged-posts-list
            #:tag-name
-           #:uri-prefix
            #:posts-list-item
            #:item-content))
 (in-package #:reblocks-cms/widgets/posts-list)
@@ -45,9 +44,11 @@
 
 
 (defwidget tagged-posts-list (posts-list)
-  ((uri-prefix :initarg :uri-prefix
-               :type string
-               :reader uri-prefix)))
+  ((tag :initarg :tag
+        :type string
+        :reader tag-name
+        ;; :reader uri-prefix
+        )))
 
 
 (defwidget posts-list-item ()
@@ -64,29 +65,16 @@
                  :content content))
 
 
-(defun make-tagged-posts-list (uri-prefix)
+(defun make-tagged-posts-list (tag)
   (make-instance 'tagged-posts-list
-                 :uri-prefix uri-prefix))
-
-
-(defun get-current-tag-name (widget)
-  (let ((current-path (reblocks/request:get-path)))
-    (unless (str:starts-with-p (uri-prefix widget)
-                               current-path)
-      (error "This widget should be used on pages with prefix ~S"
-             (uri-prefix widget)))
-  
-    (let ((current-tag-name (subseq current-path
-                                    (length (uri-prefix widget)))))
-      (values current-tag-name))))
+                 :tag tag))
 
 
 (defgeneric get-posts-list (widget)
   (:documentation "Should return a list of widgets of POSTS-LIST-ITEM class.")
   
   (:method ((widget tagged-posts-list))
-    (let* ((current-tag-name (get-current-tag-name widget))
-           (content (get-content-by-tag current-tag-name)))
+    (let* ((content (get-content-by-tag (tag-name widget))))
       (mapcar #'make-posts-list-item
               content))))
 
@@ -95,9 +83,8 @@
   (:documentation "Should return a string with a title for the index page.")
   
   (:method ((widget tagged-posts-list))
-    (let ((current-tag-name (get-current-tag-name widget)))
-      (fmt "Посты с тегом ~S"
-           current-tag-name))))
+    (fmt "Посты с тегом ~S"
+         (tag-name widget))))
 
 
 (defgeneric render-no-content (widget theme)
