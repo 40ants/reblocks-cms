@@ -18,6 +18,8 @@
                 #:defautodoc)
   (:import-from #:str
                 #:starts-with-p)
+  (:import-from #:serapeum
+                #:eval-always)
   (:export #:@index
            #:@readme
            #:@changelog))
@@ -89,17 +91,18 @@ TODO: Write a library description. Put some examples here.
 ")
 
 
-(defun model-accessor-p (symbol)
-  (when (and (starts-with-p "REBLOCKS-CMS/MODELS/" (package-name (symbol-package symbol)))
-             (fboundp symbol)
-             (sb-introspect:find-definition-source
-              (symbol-function symbol)))
-    (values t)))
+(eval-always
+  (defun model-accessor-p (symbol)
+    (when (and (starts-with-p "REBLOCKS-CMS/MODELS/" (package-name (symbol-package symbol)))
+               (fboundp symbol)
+               (sb-introspect:find-definition-source
+                (symbol-function symbol)))
+      (values t)))
 
 
-(defun model-accessor-or-starts-with-percent-p (symbol)
-  (or (starts-with-percent-p symbol)
-      (model-accessor-p symbol)))
+  (defun model-accessor-or-starts-with-percent-p (symbol)
+    (or (starts-with-percent-p symbol)
+        (model-accessor-p symbol))))
 
 
 (defautodoc @api (:system "reblocks-cms"
