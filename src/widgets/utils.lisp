@@ -22,7 +22,7 @@
   (with-html ()
     (loop for tag in tags
           do (:a :class *tag-classes*
-                 :href (fmt "/posts-by-tag/~A"
-                            (quri:url-encode (tag-name tag)))
+                 :href (route-url "by-tag"
+                                  :tag (tag-name tag))
                  (tag-name tag))))
   (values))

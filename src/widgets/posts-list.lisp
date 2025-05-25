@@ -30,6 +30,8 @@
                 #:*tag-classes*)
   (:import-from #:reblocks-cms/widgets/utils
                 #:render-tags)
+  (:import-from #:40ants-routes/route-url
+                #:route-url)
   (:export #:make-tagged-posts-list
            #:posts-list
            #:tagged-posts-list
@@ -115,8 +117,8 @@
          (content-author (content-author content))
          (author-name (author-name content-author))
          (slug (content-slug content))
-         (content-path (fmt "/posts/~A"
-                            slug))
+         (content-path (route-url "page"
+                                  :slug slug))
          (tags (get-content-tags content)))
     
     (with-html ()
