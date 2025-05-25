@@ -11,6 +11,8 @@
                 #:with-html)
   (:import-from #:reblocks-cms/widgets/vars
                 #:*tag-classes*)
+  (:import-from #:40ants-routes/route-url
+                #:route-url)
   (:export #:render-tags))
 (in-package #:reblocks-cms/widgets/utils)
 
