@@ -14,7 +14,12 @@
   (:import-from #:docs-config
                 #:docs-config)
   (:import-from #:40ants-doc/autodoc
+                #:starts-with-percent-p
                 #:defautodoc)
+  (:import-from #:str
+                #:starts-with-p)
+  (:import-from #:serapeum
+                #:eval-always)
   (:export #:@index
            #:@readme
            #:@changelog))
@@ -86,4 +91,21 @@ TODO: Write a library description. Put some examples here.
 ")
 
 
-(defautodoc @api (:system "reblocks-cms"))
+(eval-always
+  (defun model-accessor-p (symbol)
+    (when (and (starts-with-p "REBLOCKS-CMS/MODELS/" (package-name (symbol-package symbol)))
+               (fboundp symbol)
+               (sb-introspect:find-definition-source
+                (symbol-function symbol)))
+      (values t)))
+
+
+  (defun model-accessor-or-starts-with-percent-p (symbol)
+    (or (starts-with-percent-p symbol)
+        (model-accessor-p symbol))))
+
+
+(defautodoc @api (:system "reblocks-cms"
+                  ;; These symbols are ignored because
+                  ;; 40ants-doc can't find definition of accessors created by MITO
+                  :ignore-symbol-p model-accessor-or-starts-with-percent-p))

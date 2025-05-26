@@ -18,7 +18,8 @@
                "reblocks-cms/models/content"
                "reblocks-cms/models/content-tag"
                "reblocks-cms/widgets/content-page"
-               "reblocks-cms/widgets/posts-list")
+               "reblocks-cms/widgets/posts-list"
+               "reblocks-cms/routes")
   :in-order-to ((test-op (test-op "reblocks-cms-tests"))))
 
 

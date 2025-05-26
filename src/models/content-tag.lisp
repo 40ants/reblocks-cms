@@ -22,12 +22,10 @@
 (deftable content-tag ()
   ((tag :initarg :tag
         :type tag
-        :col-type tag
-        :accessor content-tag-tag)
+        :col-type tag)
    (content :initarg :content
             :type content
-            :col-type content
-            :accessor content-tag-content)))
+            :col-type content)))
 
 
 (-> get-content-by-tag (string)

@@ -20,8 +20,7 @@
   (:import-from #:reblocks-cms/models/content
                 #:content-title
                 #:content-author
-                #:content-text
-                #:content-slug)
+                #:content-text)
   (:import-from #:reblocks-cms/models/content
                 #:content)
   (:import-from #:reblocks-cms/controller/content
@@ -49,38 +48,23 @@
                 #:markdown-to-html)
   (:export #:content-page
            #:make-content-page
-           #:uri-prefix))
+           #:content-slug))
 (in-package #:reblocks-cms/widgets/content-page)
 
 
 (defwidget content-page (ui-widget)
-  ((uri-prefix :initarg :uri-prefix
-               :type string
-               :reader uri-prefix)))
+  ((slug :initarg :slug
+         :type string
+         :reader content-slug)))
 
 
 (-> make-content-page (string)
     (values content-page &optional))
 
 
-(defun make-content-page (uri-prefix)
+(defun make-content-page (content-slug)
   (make-instance 'content-page
-                 :uri-prefix uri-prefix))
-
-
-(-> get-current-slug (content-page)
-    (values string &optional))
-
-(defun get-current-slug (widget)
-  (let ((current-path (reblocks/request:get-path)))
-    (unless (str:starts-with-p (uri-prefix widget)
-                               current-path)
-      (error "This widget should be used on pages with prefix ~S"
-             (uri-prefix widget)))
-  
-    (let ((current-tag-name (subseq current-path
-                                    (length (uri-prefix widget)))))
-      (values current-tag-name))))
+                 :slug content-slug))
 
 
 (defun content-to-html (content)
@@ -88,7 +72,7 @@
 
 
 (defmethod reblocks-ui2/widget:render ((widget content-page) (theme t))
-  (let* ((slug (get-current-slug widget))
+  (let* ((slug (content-slug widget))
          (content (get-content-by-slug slug))
          (title (content-title content))
          (updated-at (object-updated-at content))
